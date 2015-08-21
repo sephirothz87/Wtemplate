@@ -1,5 +1,5 @@
 (function() {
-    console.log("build 0003");
+    console.log("build 0004");
 
     $(document).ready(function() {
         $("#button").click(function() {
