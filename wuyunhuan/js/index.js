@@ -4,7 +4,7 @@
 
 	setTimeText = function(){
     	var div=new Date()-pauseDate;
-    	console.log(div);
+    	// console.log(div);
 
     	var second=Math.round(div/1000);
 
