@@ -20,12 +20,13 @@
 
     	$(".main").empty();
 
-    	console.log("second = "+second);
-    	console.log("min_f = "+min_f);
-    	console.log("hour_f = "+hour_f);
-    	console.log("day_f = "+day_f);
-    	console.log("month_f = "+month_f);
-    	console.log("year_f = "+year_f);
+    	// console.log("second = "+second);
+    	// console.log("min_f = "+min_f);
+    	// console.log("hour_f = "+hour_f);
+    	// console.log("day_f = "+day_f);
+    	// console.log("month_f = "+month_f);
+    	// console.log("year_f = "+year_f);
+        
     	var text="自"+pauseDate+"起<br>钟稚聪已经等了吴韫欢：<br>"
     	text+=year_f.toFixed(2)+"年<br>";
     	text+=month_f.toFixed(2)+"月<br>";
