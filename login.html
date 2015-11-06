@@ -8,12 +8,20 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/common.js"></script>
-    <script src="js/index.js"></script>
     <script src="js/md5.js"></script>
 </head>
 
 <body>
     <div class="main">
+        <form id="formLogin" name="input" action="php/login.php" method="post">
+            Username:
+            <input id="username" type="text" name="username" />
+            <br>
+            <br> 
+            Password:
+            <input id="password" type="password" name="password" />
+            <a class="btn btn-primary btn-block" id="button_01_login">Login</a>
+        </form>
         <form id="formRegist" name="input" action="php/login.php" method="post">
             Username:
             <input id="username" type="text" name="username" />
