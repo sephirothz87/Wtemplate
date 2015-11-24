@@ -11,28 +11,23 @@ include "phpspider/cls_curl.php";
 
 // $cookie = trim(file_get_contents("cookie.txt"));
 
-fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" .date('Y-m-d H:i:s',time()+60*60*6). "]". "testmy.php start" . "\n" );
 
 $curl = new rolling_curl();
 // $curl->set_cookie($cookie);
 $curl->set_gzip(true);
 $curl->callback = function($response, $info, $request, $error) {
-    fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" . date('Y-m-d H:i:s' , time() + 60 * 60 * 6) . "]" . "response = " . $response . "\n" );
-    foreach ($info as $key => $value) { fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" .date('Y-m-d H:i:s' ,time()+60*60*6). "]". "info:" . $key . ": " .$value."\n" ); }
-    foreach ($request as $key => $value) { fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" .date('Y-m-d H:i:s' ,time()+60*60*6). "]". "request:" . $key . ": " .$value."\n" ); }
-    fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" . date('Y-m-d H:i:s' , time() + 60 * 60 * 6) . "]" . "error = " . $error . "\n" );
+
+    myPrint($response);
 
     preg_match("@http://www.zhihu.com/people/(.*?)/about@i", $request['url'], $out);
     // $username = $out[1];
     if (empty($response)) 
     {
-        fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" .date('Y-m-d H:i:s',time()+60*60*6). "]". "empty response" . "\n" );
         // file_put_contents("./timeout/".$username."_info.json", json_encode($info)."\n", FILE_APPEND);
         // file_put_contents("./timeout/".$username."_error.json", json_encode($error)."\n", FILE_APPEND);
     }
     else 
     {
-        fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" .date('Y-m-d H:i:s',time()+60*60*6). "]". "not empty response" . "\n" );
         // $data = get_user_about($response);
         // if (empty($data)) 
         // {
@@ -54,13 +49,37 @@ for ($i = 0; $i < 1; $i++)
     // $url = "http://www.zhihu.com";
     // $url = "http://www.zhihu.com/people/{$username}/about";
     // $url = "http://www.okooo.com/jingcai/2014-11-22";
-    $url = "http://www.okooo.com/soccer/match/677926/odds/";
+    // $url = "http://www.okooo.com/soccer/match/677926/odds/";
+    // $url = "http://www.okooo.com/soccer/match/802872/odds/";
+    $url = "http://cp.zgzcw.com/lottery/jchtplayvsForJsp.action?lotteryId=47&type=jcmini&issue=2014-11-22";
+    
     // $url = "http://www.baidu.com";
     $curl->get($url);
 }
 $data = $curl->execute();
-fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" . date('Y-m-d H:i:s' , time() + 60 * 60 * 6) . "]" . "data = " . $data . "\n" );
 exit;
+
+function myPrint ($arr)
+{
+    if (!is_array ($arr))
+    {
+            echo $arr.'<br/>';
+        // return false;
+        return;
+    }
+     
+    foreach ($arr as $key => $val )
+    {
+        if (is_array ($val))
+        {
+            myPrint ($val);
+        }
+        else
+       {
+            echo $val.'<br/>';
+        }
+    }
+}
 
 // $w = new worker();
 // $w->count = 10;
