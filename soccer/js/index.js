@@ -1,6 +1,15 @@
 (function() {
     console.log("build 0001");
 
+
+    //TODO 把Dateformat的函数移植过来并放入common.js中
+    var mStartDate = "2014-11-01";
+    var mDayNum = 30;
+
+    // function getMatchData() {
+
+    // }
+
     $(document).ready(function() {
         $("#button").click(function() {
             console.log("button be clicked");
@@ -65,8 +74,24 @@
             //     }
             // });
 
-            $("#test").load("http://www.okooo.com/jingcai/2015-11-22/");
-            console.log($("#test").html());
+            $.ajax({
+                url: "php/test.php",
+                type: "get",
+                success: function(data) {
+                    console.log("success");
+                    console.log("data");
+                    console.log(data);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log("error");
+
+                    console.log(XMLHttpRequest.status);
+                    console.log(XMLHttpRequest.readyState);
+                    console.log(XMLHttpRequest);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
 
         })
     });
