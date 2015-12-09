@@ -1,4 +1,6 @@
 <?php
+include "../..php/util.php";
+
 include "simple_html_dom.php";
 
 include "../phpspider/phpspider/config.php";
@@ -391,15 +393,16 @@ function getDetailOdds() {
 		}
 		// myPrint ( $mResArray );
 		
-		foreach ( $mResArray as $key => $val ) {
+		//在这里向csv文件中写入结果
+		// foreach ( $mResArray as $key => $val ) {
 			
-			$str_to_write = "";
-			foreach ( $val as $key => $val ) {
-				$str_to_write = $str_to_write . $val . ",";
-			}
-			$str_to_write = $str_to_write . "\n";
-			fwrite ( fopen ( "result\\2015-11-29-00653-test.csv", "a" ), $str_to_write );
-		}
+		// 	$str_to_write = "";
+		// 	foreach ( $val as $key => $val ) {
+		// 		$str_to_write = $str_to_write . $val . ",";
+		// 	}
+		// 	$str_to_write = $str_to_write . "\n";
+		// 	fwrite ( fopen ( "result\\2015-11-29-00653-test.csv", "a" ), $str_to_write );
+		// }
 		
 		myPrint ( "getDetailOdds callback over" );
 	};
@@ -407,6 +410,13 @@ function getDetailOdds() {
 	global $url_zg;
 	$curl_zg->get ( $url_zg );
 	$data_zg = $curl_zg->execute ();
+}
+
+function getPageText($pageUrl){
+	$curl = new rolling_curl ();
+	$curl->set_gzip ( true );
+	$curl->callback = function ($response, $info, $request, $error) {
+	};
 }
 
 exit ();
