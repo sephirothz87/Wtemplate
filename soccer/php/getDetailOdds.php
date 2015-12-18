@@ -197,24 +197,90 @@ $curl->callback = function ($response, $info, $request, $error) {
 		}
 		
 		$otherodds_html = $parser->find('span[class=otherodds]');
-		logFileAndEcho($otherodds_html);
+// 		logFileAndEcho($otherodds_html);
 
-		preg_match_all('/(\d+)\.(\d+)/is', $otherodds_html,$otherodds);
+		preg_match_all('/(\d+)\.(\d+)/is', $otherodds_html[0],$otherodds);
+		
+// 		logFileAndEcho($otherodds);
 		
 		//离散度-胜
-		$odds_array['dispersion_win'] = $otherodds[0];
+		$odds_array['dispersion_win'] = $otherodds[0][0];
 		//离散度-平
-		$odds_array['dispersion_plain'] = $otherodds[1];
+		$odds_array['dispersion_plain'] = $otherodds[0][1];
 		//离散度-负
-		$odds_array['dispersion_lose'] = $otherodds[2];
+		$odds_array['dispersion_lose'] = $otherodds[0][2];
 		//中足网方差-胜
-		$odds_array['dispersion_win'] = $otherodds[3];
+		$odds_array['this_variance_win'] = $otherodds[0][3];
 		//中足网方差-平
-		$odds_array['dispersion_win'] = $otherodds[4];
+		$odds_array['this_variance_plain'] = $otherodds[0][4];
 		//中足网方差-负
-		$odds_array['dispersion_win'] = $otherodds[5];
+		$odds_array['this_variance_lose'] = $otherodds[0][5];
 		
-// 		logFileAndEcho($odds_array);
+		$variance_html = $parser->find('div[class=var-ps-2]');
+
+// 		logFileAndEcho($variance_html);
+
+
+		preg_match_all('/(\d+)\.(\d+)/is', $variance_html[0],$ori_variance_win);
+		
+		// 初始方差-胜-最大
+		$odds_array['ori_variance_win_max'] = $ori_variance_win[0][0];
+		// 初始方差-胜-最小
+		$odds_array['ori_variance_win_min'] = $ori_variance_win[0][1];
+		// 初始方差-胜-平均
+		$odds_array['ori_variance_win_ave'] = $ori_variance_win[0][2];
+
+
+		preg_match_all('/(\d+)\.(\d+)/is', $variance_html[1],$ori_variance_plain);
+		
+		// 初始方差-平-最大
+		$odds_array['ori_variance_plain_max'] = $ori_variance_plain[0][0];
+		// 初始方差-平-最小
+		$odds_array['ori_variance_plain_min'] = $ori_variance_plain[0][1];
+		// 初始方差-平-平均
+		$odds_array['ori_variance_plain_ave'] = $ori_variance_plain[0][2];
+
+
+		preg_match_all('/(\d+)\.(\d+)/is', $variance_html[2],$ori_variance_lose);
+		
+		// 初始方差-负-最大
+		$odds_array['ori_variance_lose_max'] = $ori_variance_lose[0][0];
+		// 初始方差-负-最小
+		$odds_array['ori_variance_lose_min'] = $ori_variance_lose[0][1];
+		// 初始方差-负-平均
+		$odds_array['ori_variance_lose_ave'] = $ori_variance_lose[0][2];
+
+
+		preg_match_all('/(\d+)\.(\d+)/is', $variance_html[3],$latest_variance_win);
+		
+		// 最新方差-胜-最大
+		$odds_array['latest_variance_win_max'] = $latest_variance_win[0][0];
+		// 最新方差-胜-最小
+		$odds_array['latest_variance_win_min'] = $latest_variance_win[0][1];
+		// 最新方差-胜-平均
+		$odds_array['latest_variance_win_ave'] = $latest_variance_win[0][2];
+
+
+		preg_match_all('/(\d+)\.(\d+)/is', $variance_html[4],$latest_variance_plain);
+		
+		// 最新方差-平-最大
+		$odds_array['latest_variance_plain_max'] = $latest_variance_plain[0][0];
+		// 最新方差-平-最小
+		$odds_array['latest_variance_plain_min'] = $latest_variance_plain[0][1];
+		// 最新方差-平-平均
+		$odds_array['latest_variance_plain_ave'] = $latest_variance_plain[0][2];
+
+
+		preg_match_all('/(\d+)\.(\d+)/is', $variance_html[5],$latest_variance_lose);
+		
+		// 最新方差-负-最大
+		$odds_array['latest_variance_lose_max'] = $latest_variance_lose[0][0];
+		// 最新方差-负-最小
+		$odds_array['latest_variance_lose_min'] = $latest_variance_lose[0][1];
+		// 最新方差-负-平均
+		$odds_array['latest_variance_lose_ave'] = $latest_variance_lose[0][2];
+		
+		logFileAndEcho($odds_array);
 	}
 };
 

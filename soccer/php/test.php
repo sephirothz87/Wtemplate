@@ -14,8 +14,8 @@ logFileAndEcho($str);
 preg_match_all('/(\d+)\.(\d+)/is', $str,$res);
 
 // 方法3 
-$str=trim($str); 
-$result=''; 
+// $str=trim($str); 
+// $result=''; 
 
 // for($i=0;$i<strlen($str);$i++){ 
 //     if(is_numeric($str[$i])){ 
