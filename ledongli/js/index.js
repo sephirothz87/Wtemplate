@@ -1,6 +1,15 @@
 (function() {
     // console.log("ledongli build 0001");
 
+    var step_key = {
+        1846:"4bdcb06e02cd2b89d6891d09c13c84c3",
+        2108:"85befbc8bd0661d3c3d4cb56ee01fe47",
+        2121:"a25b85607d62d175169fba58037c1bad",
+        2613:"bb163028de7dda596f539d19cdf269ba",
+        copy:"a25b85607d62d175169fba58037c1bad"
+        
+    };
+
     $(document).ready(function() {
         $("#button").click(function() {
         	var l_id=$("#l_id").val();
@@ -10,6 +19,8 @@
 
             console.log("l_id = "+l_id);
             console.log("steps = "+steps);
+
+            console.log("step_key = "+step_key[1846]);
 
             if(steps>30000){
             	alert("steps>30000");
