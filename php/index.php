@@ -23,6 +23,6 @@ if(isset($_SESSION['views'])){
 echo "session_id = ".$session_id."<br>";
 
 $data = $_SESSION;
-foreach ($data as $key => $value) { fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" .date('Y-m-d H:i:s' ,time()+60*60*6). "]". "data:" . $key . ": " .$value."\n" ); }
+foreach ($data as $key => $value) { fwrite(fopen( "F:\\tmp\\log.txt" , "a" ), "[" .date('Y-m-d H:i:s' ,time()). "]". "data:" . $key . ": " .$value."\n" ); }
 
 ?>
