@@ -1,5 +1,5 @@
 <?php
-include "../..php/util.php";
+include "../../php/util.php";
 
 include "simple_html_dom.php";
 
@@ -20,14 +20,14 @@ $html;
 // 经过测试，家里的电脑中一切正常，公司机器挂掉怀疑是PHP版本或者是配置的问题
 
 // 正确
-// static $mDate = "2015-11-25";
+static $mDate = "2015-11-25";
 // 异常，怀疑是场数太多导致内存溢出之类的问题，日志每次到指定位置就会停止 83场
 // static $mDate = "2014-11-22";
 // 异常，但是日志显示正确结束了，应该是结束之后发生的异常 81场
 // static $mDate = "2015-11-21";
 // TODO 这一天有特殊情况，就是把11月8号的前几场比赛也加入到了这一页，需要再做一个check
 // 104场 挂在67
-static $mDate = "2015-11-09";
+// static $mDate = "2015-11-09";
 // 76场 over之后挂 家里的电脑运行正常
 // static $mDate = "2015-11-08";
 
@@ -349,7 +349,20 @@ $curl->callback = function ($response, $info, $request, $error) {
 		}
 		
 		myPrint ( count ( $mResArray ) );
-		getDetailOdds ();
+		
+		//在这里向csv文件中写入结果
+		foreach ( $mResArray as $key => $val ) {
+			
+			$str_to_write = "";
+			foreach ( $val as $key => $val ) {
+				$str_to_write = $str_to_write . $val . ",";
+			}
+			$str_to_write = $str_to_write . "\n";
+			fwrite ( fopen ( "result\\20160815164600.csv", "a" ), $str_to_write );
+		}
+
+		// myPrint ($mResArray);
+		// getDetailOdds ();
 		myPrint ( "over" );
 		// echo "over";
 	}
