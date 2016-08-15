@@ -20,7 +20,7 @@ $html;
 // 经过测试，家里的电脑中一切正常，公司机器挂掉怀疑是PHP版本或者是配置的问题
 
 // 正确
-static $mDate = "2015-11-25";
+// static $mDate = "2016-01-04";
 // 异常，怀疑是场数太多导致内存溢出之类的问题，日志每次到指定位置就会停止 83场
 // static $mDate = "2014-11-22";
 // 异常，但是日志显示正确结束了，应该是结束之后发生的异常 81场
@@ -30,6 +30,8 @@ static $mDate = "2015-11-25";
 // static $mDate = "2015-11-09";
 // 76场 over之后挂 家里的电脑运行正常
 // static $mDate = "2015-11-08";
+
+$mDate = $_REQUEST['date'];
 
 $mResArray = array ();
 
@@ -119,10 +121,12 @@ $curl->callback = function ($response, $info, $request, $error) {
 				// $day_index = $parser->find('span[class=xulie]');
 				$day_index = $match->children ( 0 )->children ( 0 )->plaintext;
 				
-				if ($day_index < $last_index) {
-					myPrint ( "break" );
-					break;
-				}
+				// 不知道这里为什么要加入这个跳出的逻辑，因为页面的排序不一定是按顺序排下来的，所以这里先注释掉，否则无法做出完整的数据
+				// if ($day_index < $last_index) {
+				// 	myPrint ( "break" );
+				// 	break;
+				// }
+
 				$last_index = $day_index;
 				// myPrint("day_index");
 				// myPrint($day_index);
@@ -349,6 +353,8 @@ $curl->callback = function ($response, $info, $request, $error) {
 		}
 		
 		myPrint ( count ( $mResArray ) );
+
+		//TODO 因故延期，取消，停售的场次很多，手动筛选很复杂，暂定方案是用程序筛选数据后写入另一个CSV中作为原始纯净数据保存
 		
 		//在这里向csv文件中写入结果
 		foreach ( $mResArray as $key => $val ) {
@@ -358,7 +364,7 @@ $curl->callback = function ($response, $info, $request, $error) {
 				$str_to_write = $str_to_write . $val . ",";
 			}
 			$str_to_write = $str_to_write . "\n";
-			fwrite ( fopen ( "result\\20160815164600.csv", "a" ), $str_to_write );
+			fwrite ( fopen ( "result\\2016-08-15-183004.csv", "a" ), $str_to_write );
 		}
 
 		// myPrint ($mResArray);
