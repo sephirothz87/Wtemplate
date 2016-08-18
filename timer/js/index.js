@@ -13,17 +13,11 @@ $(function(){
 			if(now<endTime){
 	    		var cound_down=Math.floor((endTime-now)/1000);
 
-	    		// console.log(cound_down);
-
 	    		hour = Math.floor(cound_down/3600);
 
 	    		minute = Math.floor((cound_down-hour*3600)/60);
 
 	    		second = cound_down%60;
-
-	    		// console.log(hour);
-	    		// console.log(minute);
-	    		// console.log(second);
 
 	    		$("#hour").val(hour);
 	    		$("#minute").val(minute);
@@ -60,12 +54,6 @@ $(function(){
 		}else{
 			$(".div-alert").hide();
 			second = $("#hour").val()*3600 + $("#minute").val()*60 + $("#second").val()*1;
-
-			// console.log(second);
-			// endTime = new Date();
-			// console.log(endTime);
-			// endTime = new Date(endTime.getTime()+parseInt(second)*1000);
-			// console.log(endTime);
 
 			startTime = new Date();
 			endTime = new Date(startTime.getTime()+parseInt(second)*1000);
