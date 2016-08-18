@@ -364,7 +364,7 @@ $curl->callback = function ($response, $info, $request, $error) {
 				$str_to_write = $str_to_write . $val . ",";
 			}
 			$str_to_write = $str_to_write . "\n";
-			fwrite ( fopen ( "result\\2016-08-15-183004.csv", "a" ), $str_to_write );
+			fwrite ( fopen ( "result\\20160818153637.csv", "a" ), $str_to_write );
 		}
 
 		// myPrint ($mResArray);
