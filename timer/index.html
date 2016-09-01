@@ -19,10 +19,8 @@
     <hedder></hedder>
     <div class="main">
         <div class="time-input">
-            <input id="hour" type="number" class="form-control input" placeholder="Hour" min="0" max="10">
-            :
-            <input id="minute" type="number" class="form-control input" placeholder="Minute" min="0" max="59">
-            :
+            <input id="hour" type="number" class="form-control input" placeholder="Hour" min="0" max="10"> :
+            <input id="minute" type="number" class="form-control input" placeholder="Minute" min="0" max="59"> :
             <input id="second" type="number" class="form-control input" placeholder="Second" min="0" max="59">
         </div>
         <div class="btn-area">
@@ -34,6 +32,13 @@
                 <span class="sr-only"></span>
             </div>
         </div>
+        <br>
+        <label class="checkbox">
+            <input type="checkbox" id="checkDialog" checked="true">Page Dialog
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" id="checkNotify" checked="true">Windows Notification
+        </label>
     </div>
     <footer class="bs-docs-footer">
         <div>@Zhong Zhicong</div>

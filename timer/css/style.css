@@ -50,4 +50,11 @@ footer div {
     text-align: center;
 }
 
+.checkbox{
+    width: 150px;
+    margin: auto;
+    text-align: left;
+    padding: 5px 0;
+}
+
 
