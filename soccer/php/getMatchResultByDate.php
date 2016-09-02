@@ -32,6 +32,7 @@ $html;
 // static $mDate = "2015-11-08";
 
 $mDate = $_REQUEST['date'];
+$resultCsvPath = "result\\2016-09-01-102142.csv";
 
 $mResArray = array ();
 
@@ -52,6 +53,8 @@ $curl->callback = function ($response, $info, $request, $error) {
 		global $mResArray;
 		
 		global $mDate;
+		
+		global $resultCsvPath;
 		
 		$last_index = 0;
 		
@@ -364,7 +367,7 @@ $curl->callback = function ($response, $info, $request, $error) {
 				$str_to_write = $str_to_write . $val . ",";
 			}
 			$str_to_write = $str_to_write . "\n";
-			fwrite ( fopen ( "result\\20160818153637.csv", "a" ), $str_to_write );
+			fwrite ( fopen ( $resultCsvPath, "a" ), $str_to_write );
 		}
 
 		// myPrint ($mResArray);
