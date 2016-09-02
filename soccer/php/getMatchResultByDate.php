@@ -32,7 +32,7 @@ $html;
 // static $mDate = "2015-11-08";
 
 $mDate = $_REQUEST['date'];
-$resultCsvPath = "result\\2016-09-01-102142.csv";
+$resultCsvPath = "result\\tmp.csv";
 
 $mResArray = array ();
 
