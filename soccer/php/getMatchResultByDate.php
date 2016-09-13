@@ -99,8 +99,8 @@ $curl->callback = function ($response, $info, $request, $error) {
 				
 				$res = array ();
 				// 期数日期
-				$res ['date'] = $mDate;
-				// $res ['date'] = "2016-09-11";
+				// $res ['date'] = $mDate;
+				$res ['date'] = "2016-09-13";
 				// 比赛结果是否有效
 				$res ['able'] = true;
 				// 销售是否正常
