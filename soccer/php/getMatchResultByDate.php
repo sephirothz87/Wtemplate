@@ -32,6 +32,7 @@ $html;
 // static $mDate = "2015-11-08";
 
 $mDate = $_REQUEST['date'];
+$resultCsvRoot = "result\\";
 $resultCsvPath = "result\\tmp.csv";
 
 $mResArray = array ();
@@ -361,6 +362,7 @@ $curl->callback = function ($response, $info, $request, $error) {
 		//TODO 因故延期，取消，停售的场次很多，手动筛选很复杂，暂定方案是用程序筛选数据后写入另一个CSV中作为原始纯净数据保存
 		
 		//在这里向csv文件中写入结果
+		$path = "result\\" .date ( 'Y-m-d-His', time ()).".csv";
 		foreach ( $mResArray as $key => $val ) {
 			
 			$str_to_write = "";
@@ -368,7 +370,7 @@ $curl->callback = function ($response, $info, $request, $error) {
 				$str_to_write = $str_to_write . $val . ",";
 			}
 			$str_to_write = $str_to_write . "\n";
-			fwrite ( fopen ( $resultCsvPath, "a" ), $str_to_write );
+			fwrite ( fopen ( $path, "a" ), $str_to_write );
 		}
 
 		// myPrint ($mResArray);
