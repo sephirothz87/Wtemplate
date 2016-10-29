@@ -4,7 +4,7 @@ $(function() {
     ALERT_TXT_INVALID = "最大值：10小时 59分 59秒";
     ALERT_TXT_NONE = "请输入时间";
 
-    second = 0;
+    total_second = 0;
     startTime = 0;
     endTime = 0;
     isStart = false;
@@ -36,13 +36,25 @@ $(function() {
                     }
                 }, 1)
 
-                startTime = 0;
-                endTime = 0;
-                isStart = false;
+                if($("#checkLoop").is(":checked")){
+                    //再次循环
+                    startTime = new Date();
+                    endTime = new Date(startTime.getTime() + parseInt(total_second) * 1000);
+                    console.log(total_second);
+                    // isStart = true;
+                    // looper();
 
-                $("#hour").val(null);
-                $("#minute").val(null);
-                $("#second").val(null);
+                    setTimeout('looper()', 200);
+                }else{
+                    //结束
+                    startTime = 0;
+                    endTime = 0;
+                    isStart = false;
+
+                    $("#hour").val(null);
+                    $("#minute").val(null);
+                    $("#second").val(null);
+                }
             }
         } else {
             startTime = 0;
@@ -121,10 +133,10 @@ $(function() {
             $(".div-alert").show();
         } else {
             $(".div-alert").hide();
-            second = $("#hour").val() * 3600 + $("#minute").val() * 60 + $("#second").val() * 1;
+            total_second = $("#hour").val() * 3600 + $("#minute").val() * 60 + $("#second").val() * 1;
 
             startTime = new Date();
-            endTime = new Date(startTime.getTime() + parseInt(second) * 1000);
+            endTime = new Date(startTime.getTime() + parseInt(total_second) * 1000);
             isStart = true;
             looper();
         }
@@ -135,7 +147,13 @@ $(function() {
         if (!DEBUG) {
             isStart = false;
         } else {
-            showNotification("timer", " It's time!", "../img/icon.jpg");
+            // showNotification("timer", " It's time!", "../img/icon.jpg");
+
+                if($("#checkLoop").is(":checked")){
+                    console.log('checked');
+                }else{
+                    console.log('unchecked');
+                }
         }
     });
 })
